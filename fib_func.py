@@ -4,7 +4,7 @@
 # @Author  : lch
 # @File    : fib_func.py
 
-# 斐波拉契数列获取
+# 斐波拉契数列
 
 
 def fib_func(max):
