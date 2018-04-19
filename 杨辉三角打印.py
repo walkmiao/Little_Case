@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2018/4/8 16:08
 # @Author  : lch
-# @File    : generator.py
+# @File    : 杨辉三角打印.py
 #获取杨辉三角函数
 def get_angela(n):
     L = [1]
