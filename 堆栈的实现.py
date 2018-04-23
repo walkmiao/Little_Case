@@ -5,49 +5,40 @@
 # @Site    : 
 # @File    : 堆栈的实现.py
 # @Software: PyCharm
-class my_stack(object):
-    def __init__(self, value):
-        self.value = value
-        # 前驱
-        self.before = None
-        # 后继
-        self.behind = None
-
-    def __str__(self):
-        return str(self.value)
-
-
-def top(stack):
-    if isinstance(stack, my_stack):
-        if stack.behind is not None:
-            return top(stack.behind)
+#给一个点，我们能够根据这个点知道一些内容
+class Node(object):
+    def __init__(self,val): #定位的点的值和一个指向
+        self.val=val    #指向元素的值,原队列第二元素
+        self.next=None   #指向的指针
+class stack(object):
+    def __init__(self):
+        self.top=None #初始化最开始的位置
+    def peek(self):  #获取栈顶的元素
+        if self.top!=None:  #如果栈顶不为空
+            return self.top.val  #返回栈顶元素的值
         else:
-            return stack
-
-
-def push(stack, ele):
-    #新建实例
-    push_ele = my_stack(ele)
-    if isinstance(stack, my_stack):
-      stack_top = top(stack)
-      push_ele.before = stack_top
-      push_ele.before.behind = push_ele
-    else:
-      raise Exception('不要乱扔东西进来好么')
-
-
-def pop(stack):
-    if isinstance(stack, my_stack):
-        stack_top = top(stack)
-        if stack_top.before is not None:
-            stack_top.before.behind = None
-            stack_top.behind = None
-            return stack_top
+            return None
+    def push(self,n):#添加到栈中
+        n=Node(n)  #实例化节点
+        n.next=self.top  #顶端元素传值给一个指针
+        self.top=n    #
+        # return n.val
+    def pop(self):  #退出栈
+        if self.top == None:
+            return None
         else:
-            print('已经是栈顶了')
+            tmp=self.top.val
+            self.top=self.top.next  #下移一位，进行
+            return tmp
 
-mystack=my_stack(5)
 
-# push(mystack,10)
-# push(mystack,20)
-# print(top(mystack))
+if __name__=="__main__":
+    s=stack()
+    s.push(1)
+    s.push(2)
+    s.push(3)
+
+    print (s.pop())
+    s.push(4)
+    print (s.pop())
+    print (s.pop())
