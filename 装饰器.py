@@ -7,24 +7,45 @@
 # @Software: PyCharm
 import datetime
 import functools
-def log(text=None):
-    def wrap(func):
-        @functools.wraps(func)
-        def f0(*args,**kwargs):
-            print('{0} is print'.format(text))
-            return func(*args,**kwargs)
-        return f0
+import time
+
+#不改变原函数的情况，通过装饰器增加打印函数调用前后花费的时间
+def meric(f):
+    @functools.wraps(f)
+    def wrap(*args,**kw):
+        start=time.time()
+        tmp=f(*args, **kw)
+        print('%s function cost %s ms' % (f.__name__, time.time() - start))
+        return tmp
+    return wrap
+#编写一个decorator，能在函数调用的前后打印出'begin call'和'end call'的日志。
+def call(f):
+    def wrap(*args,**kw):
+        print('%s begin call..'%f.__name__)
+        tmp=f(*args,**kw)
+        print('%s end call...'%f.__name__)
+        return tmp
     return wrap
 
-@log()
-def f1(num):
-    print('the num is ',num)
-f1(12)
-@log()
-def f2(num,age):
-    print('the num is{0},the age is{1}'.format(num,age))
+@call
+@meric
+def f1(x,y):
+    time.sleep(0.233)
+    return x+y
 
-f2(10,99)
+@call
+@meric
+def f2(x,y,z):
+    time.sleep(0.5666)
+    return x*y*z
+print(f1(10,10))
+print(f2(3,4,5))
+print(f1.__name__)
+
+
+
+
+
 
 
 
