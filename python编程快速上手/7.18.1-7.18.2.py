@@ -6,10 +6,20 @@
 # @File    : 7.18.1-7.18.2.py
 # @Software: PyCharm
 
-#7.18.1 暂未实现
+#7.18.1 实现对口令的强度检测，直到口令强度达到后停止程序
 import re
-def pwTest(password):
-    pass
+def pwTest():
+    password=input('input your passwd:\n')
+    regex1=re.compile(r'[a-z]+')
+    regex2=re.compile(r'[A-Z]+')
+    regex3=re.compile(r'\d+')
+    if len(password)>8 and regex1.search(password) and regex2.search(password) and regex3.search(password):
+        print('password is strong!')
+    else:
+        print('check password!')
+        pwTest()
+
+
 
 #7.18.2,用正则实现strip()函数功能，并能通过第二个参数 删除指定字符后返回
 def stripNew(charater,para=None):
@@ -37,6 +47,5 @@ print('两个参数'.center(20,'#'))
 print(stripNew(s1,'a'))
 print(stripNew(s2,'o'))
 print(stripNew(s3,'t'))
-
 
 

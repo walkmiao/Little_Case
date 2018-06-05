@@ -5,4 +5,6 @@
 # @File    : test.py
 # -*- coding: utf-8 -*-
 
-import super用法
+
+s=['a','ac','b','b']
+print(s.index('b',3,10))
