@@ -33,12 +33,16 @@ class stack(object):
 
 
 if __name__=="__main__":
+
     s=stack()
+    print(s.peek())
     s.push(1)
     s.push(2)
     s.push(3)
-
+    s.push(5)
     print (s.pop())
     s.push(4)
     print (s.pop())
     print (s.pop())
+    print(s.pop())
+    print(s.pop())
