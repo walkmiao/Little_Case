@@ -1,2 +1,5 @@
-$def with (name)
-<em>Hello,$name</em>, world!
+$def with (count)
+$if count:
+    <em>Hello,</em>, world! $count
+$else:
+    <em>Hello,</em>world! $count

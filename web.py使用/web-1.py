@@ -8,20 +8,31 @@ import web
 
 urls = (
     # '/(.*)', 'hello',
-    '/hello_1[/]?.*', 'hello_1',
-    '/hello_2/(.*)', 'hello_2',
+    '/hello1', 'hello_1',
+    '/hello2/(.*)', 'hello_2',
 )
-app=web.application(urls,globals())
+app=web.application(urls, globals())
 render=web.template.render('templates/')
+
+class hello():
+    def GET(self, name):
+        if not name:
+            name = 'world'
+        return 'hello ' + name +' !'
 
 class hello_1():
 
     def GET(self):
-        i = web.input(name=None)
-        return render.hello1(i.name)
+        i = web.input()
+        print(i)
+        count=i.count
+        return render.hello1(count)
+
+
 class hello_2():
-    def GET(self,name):
+    def GET(self, name):
         return render.hello2(name)
+
 
 if __name__=='__main__':
     app.run()

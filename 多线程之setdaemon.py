@@ -11,7 +11,7 @@ class Mythread(threading.Thread):
         super(Mythread, self).__init__()
         self.id=id
     def run(self):
-        time.sleep(8)
+        time.sleep(3)
         print(self.id)
 
 if __name__=='__main__':
