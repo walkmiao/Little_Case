@@ -15,17 +15,21 @@ def super(cls1,cls2):
     mro=cls2.mro()
     return mro[mro.index(cls)+1]
 '''
-class A(): #python3中默认继承object
+
+
+class A():  # python3中默认继承object
     def __new__(cls, *args, **kwargs):
-        ins=super(A, cls).__new__(cls, *args, **kwargs) #按照上面super的解释，所以这里super(A,cls)相当于是object
-        print('cls mro list:%s'%(cls.mro()))
-        print('A instance is newed:%s'%ins)
+        print(cls)
+        # 按照上面super的解释，所以这里super(A,cls)相当于是object
+        ins = super(A, cls).__new__(cls, *args, **kwargs)
+        print('cls mro list:%s' % (cls.mro()))
+        print('A instance is newed:%s' % ins)
         return ins
+
     def __init__(self):
-        print('current instance is %s'%self)
-        super(A, self).__init__() #此处super(A,self)也是object
+        print('current instance is %s' % self)
+        super(A, self).__init__()  # 此处super(A,self)也是object
         print('instance inited!')
 
-a=A()
 
-
+a = A()

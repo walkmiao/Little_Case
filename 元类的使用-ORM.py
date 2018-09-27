@@ -52,7 +52,7 @@ class Model(dict, metaclass=ModelMetaclass):
     def __init__(self, **kw):
         super(Model, self).__init__(**kw)
 
-    def __getattr__(self, k):                       #这里getattr的作用是当实例找不到属性k时，使用getattr函数来获取属性值
+    def __getattr__(self, k):                       # 这里getattr的作用是当实例找不到属性k时，使用getattr函数来获取属性值
         try:
             return self[k]
         except KeyError:
