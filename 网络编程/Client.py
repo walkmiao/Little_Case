@@ -11,8 +11,8 @@ import socket
 s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.connect(('127.0.0.1',9999))
 print(s.recv(1024).decode('utf-8'))  #接受server发来的消息时注意解码，因为send默认发的是bytes类型
-for data in [b'ALISA',b'BOB',b'FOCUS']:
-    s.send(data)
+while 1:
+    msg = input("输入你需要发送的信息:")
+    msg = msg.encode(encoding='utf-8')
+    s.send(msg)
     print(s.recv(1024).decode('utf-8'))
-s.send(b'exit')
-s.close()

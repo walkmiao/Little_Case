@@ -11,22 +11,21 @@ import os
 import time
 
 
-def run_proc(name):
-    # print('run child process %s,pid is %s' % (name, os.getpid()))
-    # time.sleep(5)
-    return ('ceshi'+name)
+def consumer():
+    r=''
+    while True:
+        n = yield r
+        print('[c]consumer %s'%n)
+        r='%s ok'%n
+    pass
 
-if __name__ == '__main__':
-    pool = Pool()
-    print('Parent process %s start'%os.getpid())
-    temp=[]
-    for i in range(1,10):
-        i=str(i)
-        temp.append(pool.apply_async(run_proc, args=(i,)))
-    print('waiting for all task done...')
-    pool.close()
-    pool.join()
-    print('all task done')
-    print(temp)
-    for i in temp:
-        print(i.get())
+
+def produce(c):
+    c.send(None)
+    for i in range(5):
+        print('[p]produce %s'%i)
+        n=c.send(i)
+        print('[p consumer %s]'%n)
+    c.close()
+c=consumer()
+produce(c)

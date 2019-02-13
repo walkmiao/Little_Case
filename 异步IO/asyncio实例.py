@@ -8,7 +8,8 @@ import threading
 import asyncio
 import time
 import functools
-now=lambda :time.time()
+
+now = lambda: time.time()
 async def do_some_work(x):
     print('waiting for %d s'%x)
     await asyncio.sleep(x)

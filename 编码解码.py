@@ -6,7 +6,8 @@
 # @File    : 编码解码.py
 # @Software: PyCharm
 
-u='风朝'
+u=u'风朝'
+print(type(u))
 #encode 进行编码
 s1=u.encode('gbk')
 s2=u.encode('gb2312')
