@@ -37,7 +37,7 @@ def change_it(n):
     balance = balance - n
 
 def run_thread(n):
-    for i in range(10000000):
+    for i in range(1000):
         lock.acquire() #进入变量操作区，开始启用锁
         change_it(n)
         lock.release()#操作完成后，记得解锁

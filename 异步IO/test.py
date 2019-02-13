@@ -7,7 +7,7 @@
 # -*-coding:utf-8-*-
 import threading
 
-mutex_lock = threading.RLock() # 互斥锁的声明
+mutex_lock = threading.RLock()  # 互斥锁的声明
 ticket = 100000  # 总票数
 # 用于统计各个线程的得票数
 ticket_for_thread1 = 0
@@ -16,7 +16,7 @@ ticket_for_thread3 = 0
 ticket_for_thread4 = 0
 
 
-class myThread(threading.Thread):  # 线程处理函数
+class MyThread(threading.Thread):  # 线程处理函数
     def __init__(self, name):
         threading.Thread.__init__(self)  # 线程类必须的初始化
         self.thread_name = name  # 将传递过来的name构造到类中的name
@@ -29,8 +29,8 @@ class myThread(threading.Thread):  # 线程处理函数
         global ticket_for_thread2
         global ticket_for_thread3
         global ticket_for_thread4
-        while 1:
-            mutex_lock.acquire();  # 临界区开始，互斥的开始
+        while True:
+            mutex_lock.acquire()  # 临界区开始，互斥的开始
             # 仅能有一个线程↓↓↓↓↓↓↓↓↓↓↓↓
             if ticket > 0:
                 ticket -= 1
@@ -54,10 +54,10 @@ class myThread(threading.Thread):  # 线程处理函数
     # 初始化线程
 
 
-thread1 = myThread("线程1")
-thread2 = myThread("线程2")
-thread3 = myThread("线程3")
-thread4 = myThread("线程4")
+thread1 = MyThread("线程1")
+thread2 = MyThread("线程2")
+thread3 = MyThread("线程3")
+thread4 = MyThread("线程4")
 # 开启线程
 thread1.start()
 thread2.start()
@@ -74,4 +74,9 @@ print("线程1：%d张" % (ticket_for_thread1))
 print("线程2：%d张" % (ticket_for_thread2))
 print("线程3：%d张" % (ticket_for_thread3))
 print("线程4：%d张" % (ticket_for_thread4))
-print("总票数共：%s"%(ticket_for_thread1+ticket_for_thread2+ticket_for_thread3+ticket_for_thread4))
+print(
+    "总票数共：%s" %
+    (ticket_for_thread1 +
+     ticket_for_thread2 +
+     ticket_for_thread3 +
+     ticket_for_thread4))
