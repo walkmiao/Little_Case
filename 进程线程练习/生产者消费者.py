@@ -16,7 +16,6 @@ def consumer():
         r='%s ok'%n
 
 
-    pass
 
 def product(c):
     c.send(None)#启动生成器,第一次启动生成器参数必须为None，因为没有yield表达式来接收这个参数值
